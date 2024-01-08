@@ -22,8 +22,13 @@ namespace MyApplication
             const string MsgMaxRange = "Introdueix el valor máxim: ";
             const string MsgInvalidMaxRange = "El valor màxim ha de ser més gran que el valor mínim. Es tanca el programa. ";
             const string MsgRandNum = "El valor aleatori és {0}";
+            const string MsgVowelsOrConsonants = "Que vols comptar:\n0. Vocals\n1. Consonants\n - ";
+            const string MsgVowelsOrConsonantsNotValid = "Aquest valor no és vàlid. Es tanca el programa";
+            const string MsgText = "Introdueix el text: ";
+            const string MsgTextVowels = "El número de vocals al text és {0}";
+            const string MsgTextConsonants = "El número de consonants al text és {0}";
 
-            int option, num, baseNum, expNum, minValue, maxValue;
+            int option, num, baseNum, expNum, minValue, maxValue, vowelsOrConsonants, count;
 
             bool isOddNum;
 
@@ -102,6 +107,28 @@ namespace MyApplication
 
                 // Nombre de vocals o consonants
                 case 4:
+                    Console.Write(MsgVowelsOrConsonants);
+                    vowelsOrConsonants = Convert.ToInt32(Console.ReadLine());
+
+                    if(vowelsOrConsonants != 0 && vowelsOrConsonants != 1)
+                    {
+                        Console.WriteLine(MsgVowelsOrConsonantsNotValid);
+                        break;
+                    }
+
+                    Console.Write(MsgText);
+
+                    count = OperationModules.CountVowelsOrConsonants(Console.ReadLine(), Convert.ToBoolean(vowelsOrConsonants));
+
+                    if (Convert.ToBoolean(vowelsOrConsonants))
+                    {
+                        Console.WriteLine(MsgTextConsonants, count);
+                    }
+                    else
+                    {
+                        Console.WriteLine(MsgTextVowels, count);
+                    }
+
                     break;
             }
 
