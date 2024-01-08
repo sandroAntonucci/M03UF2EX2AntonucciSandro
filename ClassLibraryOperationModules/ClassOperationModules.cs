@@ -13,5 +13,17 @@
             // Retorna true si és senar
             return num % 2 == 1;
         }
+
+        public static int Power(int baseNum, int expNum)
+        {
+            int result = 1;
+
+            for(int i = 0; i < expNum; i++)
+            {
+                result = result * baseNum;
+            }
+
+            return result;
+        }
     }
 }
