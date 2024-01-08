@@ -25,5 +25,12 @@
 
             return result;
         }
+
+        public static int RandomNum(int minValue, int maxValue)
+        {
+            Random rand = new Random();
+
+            return rand.Next(minValue, maxValue+1);
+        }
     }
 }
