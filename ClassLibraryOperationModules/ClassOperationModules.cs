@@ -32,5 +32,21 @@
 
             return rand.Next(minValue, maxValue+1);
         }
+
+        public static int CountVowelsOrConsonants(string text, bool vowelsOrConsonants)
+        {
+            string vowels = "aeiou";
+
+            int vowelsCount = 0, consonantsCount = 0;
+
+            for(int i = 0;i < text.Length;i++)
+            {
+                if (vowels.Contains(text[i])) vowelsCount++;
+                else consonantsCount++;
+            }
+
+            return vowelsOrConsonants ? consonantsCount : vowelsCount;
+
+        }
     }
 }
