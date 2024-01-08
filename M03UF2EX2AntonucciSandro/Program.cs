@@ -18,8 +18,12 @@ namespace MyApplication
             const string MsgNumNotNatural = "Aquest número no és natural. Es tanca el programa.";
             const string MsgOddNum = "El número és senar";
             const string MsgEvenNum = "El número es parell";
+            const string MsgMinRange = "Introdueix el valor mínim: ";
+            const string MsgMaxRange = "Introdueix el valor máxim: ";
+            const string MsgInvalidMaxRange = "El valor màxim ha de ser més gran que el valor mínim. Es tanca el programa. ";
+            const string MsgRandNum = "El valor aleatori és {0}";
 
-            int option, num, baseNum, expNum;
+            int option, num, baseNum, expNum, minValue, maxValue;
 
             bool isOddNum;
 
@@ -54,18 +58,11 @@ namespace MyApplication
                     Console.Write(MsgBase);
                     baseNum = Convert.ToInt32(Console.ReadLine());
 
-                    //Si el número no és natural, informa a l'usuari de que es tanca el programa
-                    if (!OperationModules.IsNatural(baseNum))
-                    {
-                        Console.WriteLine(MsgNumNotNatural);
-                        break;
-                    }
-
                     Console.Write(MsgExp);
                     expNum = Convert.ToInt32(Console.ReadLine());
 
-                    //Si el número no és natural, informa a l'usuari de que es tanca el programa
-                    if (!OperationModules.IsNatural(expNum))
+                    //Si algún dels números no és natural, informa a l'usuari de que es tanca el programa
+                    if (!OperationModules.IsNatural(expNum) || !OperationModules.IsNatural(baseNum))
                     {
                         Console.WriteLine(MsgNumNotNatural);
                         break;
@@ -76,12 +73,32 @@ namespace MyApplication
                     break;
 
 
-
-
-
                 // Retornar valor aleatori
                 case 3:
+                    Console.Write(MsgMinRange);
+                    minValue = Convert.ToInt32(Console.ReadLine());
+
+                    Console.Write(MsgMaxRange);
+                    maxValue = Convert.ToInt32(Console.ReadLine());
+
+                    //Si algún dels números no és natural, informa a l'usuari de que es tanca el programa
+                    if (!OperationModules.IsNatural(minValue) || !OperationModules.IsNatural(maxValue))
+                    {
+                        Console.WriteLine(MsgNumNotNatural);
+                        break;
+                    }
+
+                    //Si el valor máxim és més petit o igual que el valor minim informa a l'usuari i es tanca el programa
+                    if (minValue >= maxValue)
+                    {
+                        Console.WriteLine(MsgInvalidMaxRange);
+                        break;
+                    }
+
+                    Console.WriteLine(MsgRandNum, OperationModules.RandomNum(minValue, maxValue));
+
                     break;
+
 
                 // Nombre de vocals o consonants
                 case 4:
